@@ -19,9 +19,9 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { BoardResponseDto } from '../model/boardResponseDto';
+import { CreateGameRequestDto } from '../model/createGameRequestDto';
 // @ts-ignore
-import { MakeMoveRequestDto } from '../model/makeMoveRequestDto';
+import { GameResponseDto } from '../model/gameResponseDto';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -32,7 +32,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class GameplayControllerService {
+export class GameControllerService {
 
     protected basePath = 'http://localhost:8081/kalah';
     public defaultHeaders = new HttpHeaders();
@@ -94,17 +94,17 @@ export class GameplayControllerService {
     }
 
     /**
-     * Makes a movement.
-     * @param makeMoveRequestDto 
+     * Creates a new Kalah game.
+     * @param createGameRequestDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public makeMove(makeMoveRequestDto: MakeMoveRequestDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<BoardResponseDto>;
-    public makeMove(makeMoveRequestDto: MakeMoveRequestDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<BoardResponseDto>>;
-    public makeMove(makeMoveRequestDto: MakeMoveRequestDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<BoardResponseDto>>;
-    public makeMove(makeMoveRequestDto: MakeMoveRequestDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (makeMoveRequestDto === null || makeMoveRequestDto === undefined) {
-            throw new Error('Required parameter makeMoveRequestDto was null or undefined when calling makeMove.');
+    public createGame(createGameRequestDto: CreateGameRequestDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<GameResponseDto>;
+    public createGame(createGameRequestDto: CreateGameRequestDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<GameResponseDto>>;
+    public createGame(createGameRequestDto: CreateGameRequestDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<GameResponseDto>>;
+    public createGame(createGameRequestDto: CreateGameRequestDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (createGameRequestDto === null || createGameRequestDto === undefined) {
+            throw new Error('Required parameter createGameRequestDto was null or undefined when calling createGame.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -113,7 +113,7 @@ export class GameplayControllerService {
         if (localVarHttpHeaderAcceptSelected === undefined) {
             // to determine the Accept header
             const httpHeaderAccepts: string[] = [
-                '*/*'
+                'application/json'
             ];
             localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         }
@@ -152,11 +152,11 @@ export class GameplayControllerService {
             }
         }
 
-        let localVarPath = `/gameplay`;
-        return this.httpClient.request<BoardResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/game`;
+        return this.httpClient.request<GameResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: makeMoveRequestDto,
+                body: createGameRequestDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

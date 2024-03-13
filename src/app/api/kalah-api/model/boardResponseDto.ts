@@ -11,8 +11,19 @@
  */
 
 
-export interface MakeMoveRequestDto { 
-    gameId?: number;
+export interface BoardResponseDto { 
+    id?: number;
     pit?: number;
+    tokenCount?: number;
+    playerSide?: BoardResponseDto.PlayerSideEnum;
+    kalah?: boolean;
 }
+export namespace BoardResponseDto {
+    export type PlayerSideEnum = 'BLUE' | 'RED';
+    export const PlayerSideEnum = {
+        Blue: 'BLUE' as PlayerSideEnum,
+        Red: 'RED' as PlayerSideEnum
+    };
+}
+
 

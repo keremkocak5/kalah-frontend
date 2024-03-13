@@ -6,13 +6,17 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, LandingPageComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule]
+    imports: [CommonModule, MatGridListModule, RouterOutlet, LandingPageComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, FlexLayoutModule, ReactiveFormsModule, HttpClientModule]
 })
 export class AppComponent {
   title = 'Kalah';

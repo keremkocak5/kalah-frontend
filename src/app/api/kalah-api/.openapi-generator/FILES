@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 README.md
 api.module.ts
 api/api.ts
@@ -9,11 +8,10 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
-model/board.ts
+model/boardHeaderResponseDto.ts
 model/boardResponseDto.ts
 model/createGameRequestDto.ts
-model/game.ts
-model/makeMoveRequestDto.ts
+model/gameResponseDto.ts
 model/models.ts
 param.ts
 variables.ts
