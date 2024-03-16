@@ -3,7 +3,7 @@ README.md
 api.module.ts
 api/api.ts
 api/gameController.service.ts
-api/gameplayController.service.ts
+api/playController.service.ts
 configuration.ts
 encoder.ts
 git_push.sh

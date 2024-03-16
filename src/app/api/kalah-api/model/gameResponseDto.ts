@@ -27,10 +27,10 @@ export namespace GameResponseDto {
         Blue: 'BLUE' as TurnEnum,
         Red: 'RED' as TurnEnum
     };
-    export type StatusEnum = 'INITIALIZED' | 'PLAYING' | 'OVER';
+    export type StatusEnum = 'ACTIVE' | 'OVER_DRAW' | 'OVER';
     export const StatusEnum = {
-        Initialized: 'INITIALIZED' as StatusEnum,
-        Playing: 'PLAYING' as StatusEnum,
+        Active: 'ACTIVE' as StatusEnum,
+        OverDraw: 'OVER_DRAW' as StatusEnum,
         Over: 'OVER' as StatusEnum
     };
 }

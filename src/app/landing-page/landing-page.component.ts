@@ -38,14 +38,14 @@ form: FormGroup;
    
 
     this.form = formBuilder.group({
-			playerAName: ['', Validators.required],
-      playerBName: ['', Validators.required],
+			playerRedName: ['', Validators.required],
+      playerBlueName: ['', Validators.required],
       pitCount: ['', Validators.required]
 		});
 
   }
 
-  createGameRequestDto: CreateGameRequestDto = {playerAName: '', playerBName: '', pitCount: 3, againstComputer: false};
+  createGameRequestDto: CreateGameRequestDto = {playerBlueName: '', playerRedName: '', pitCount: 3, againstComputer: false};
 
 
   checkoutForm = this.formBuilder.group({

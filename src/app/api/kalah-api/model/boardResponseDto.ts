@@ -16,7 +16,7 @@ export interface BoardResponseDto {
     pit?: number;
     tokenCount?: number;
     playerSide?: BoardResponseDto.PlayerSideEnum;
-    kalah?: boolean;
+    isKalah?: boolean;
 }
 export namespace BoardResponseDto {
     export type PlayerSideEnum = 'BLUE' | 'RED';

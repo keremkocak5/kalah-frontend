@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, take } from 'rxjs';
-import { BoardHeaderResponseDto, BoardResponseDto, GameResponseDto } from '../api/kalah-api';
+import { BoardHeaderResponseDto, BoardResponseDto, GameResponseDto, PlayControllerService } from '../api/kalah-api';
 import { CommonModule } from '@angular/common';
-import { GameplayControllerService } from '../api/kalah-api';
 
 @Component({
   selector: 'app-board-page',
@@ -16,15 +15,15 @@ import { GameplayControllerService } from '../api/kalah-api';
 export class BoardPageComponent implements OnInit {
 
 isButtonDisabled(arg0: Tile1) {
- return arg0.tileCount==0 || arg0.player==this.gameResponseDto.turn;
+ return arg0.tileCount==0 || arg0.player!=this.gameResponseDto.turn;
 }
  
 
   public gameResponseDto: GameResponseDto ={};
-  public board: BoardHeaderResponseDto = {};
+  //public board: BoardHeaderResponseDto = {}; // board tamamen kalkabilir
   public t1: Tile1[] = [];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private gameplayControllerService: GameplayControllerService){
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private playControllerService: PlayControllerService){
     
   }
   
@@ -36,9 +35,9 @@ isButtonDisabled(arg0: Tile1) {
           this.router.navigateByUrl('/');
         }
         this.gameResponseDto = data.game;
-        this.gameplayControllerService.getBoard(data.game.id).pipe(take(1)).subscribe(board => {
-          this.board = board; 
-          this.createTiles()} );
+
+
+          this.createTiles();
       }, 
         error => console.log('kerem'));
   }
@@ -46,11 +45,11 @@ isButtonDisabled(arg0: Tile1) {
   private createTiles() {
     //console.log('>', this.board);
 
-     this.board.boardResponseDtos?.sort((n1: BoardResponseDto, n2: BoardResponseDto) => 
-       n1.playerSide!.localeCompare(n2.playerSide!) ||  Number(n2.kalah)-Number(n1.kalah)|| n2.playerSide===BoardResponseDto.PlayerSideEnum.Red ?  n2.id!-n1.id! : n1.id!-n2.id! )
+     this.gameResponseDto.boardResponseDtos?.sort((n1: BoardResponseDto, n2: BoardResponseDto) => 
+       n1.playerSide!.localeCompare(n2.playerSide!) ||  Number(n2.isKalah)-Number(n1.isKalah)|| n2.playerSide===BoardResponseDto.PlayerSideEnum.Red ?  n2.id!-n1.id! : n1.id!-n2.id! )
      .forEach(boardResponseDto =>  {
         //console.log('>>', boardResponseDto.id);
-        this.t1.push({id: boardResponseDto.pit, tileCount: boardResponseDto.tokenCount, rows: boardResponseDto.kalah?2:1 , color: boardResponseDto.playerSide===BoardResponseDto.PlayerSideEnum.Blue?'blue':'red', player: boardResponseDto.playerSide!})
+        this.t1.push({id: boardResponseDto.pit, tileCount: boardResponseDto.tokenCount, rows: boardResponseDto.isKalah?2:1 , color: boardResponseDto.playerSide===BoardResponseDto.PlayerSideEnum.Blue?'blue':'red', player: boardResponseDto.playerSide!})
       }  ); 
   }
 
@@ -58,9 +57,10 @@ isButtonDisabled(arg0: Tile1) {
    
   public move(pit: number) {
     console.log('kerem')
-    this.gameplayControllerService.makeMove(this.gameResponseDto.id!, pit).subscribe(result => {this.board = result
-    this.t1.forEach(
-      tt => this.board.boardResponseDtos?.filter(boa => boa.pit === tt.id /*kerem bu map olsun*/).map(boa => tt.tileCount = boa.tokenCount)
+    this.playControllerService.makeMove(this.gameResponseDto.id!, pit).subscribe(result => {
+      this.gameResponseDto.turn = result.turn; // kerem dikkat degistir
+      this.t1.forEach(
+      tt => result.boardResponseDtos?.filter(boa => boa.pit === tt.id /*kerem bu map olsun*/).map(boa => tt.tileCount = boa.tokenCount)
     )
     });
 
