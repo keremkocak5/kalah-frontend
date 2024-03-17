@@ -145,7 +145,7 @@ export class PlayControllerService {
             }
         }
 
-        let localVarPath = `/play/gameId/${this.configuration.encodeParam({name: "gameId", value: gameId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/pit/${this.configuration.encodeParam({name: "pit", value: pit, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
+        let localVarPath = `/play/game/${this.configuration.encodeParam({name: "gameId", value: gameId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/pit/${this.configuration.encodeParam({name: "pit", value: pit, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
         return this.httpClient.request<BoardHeaderResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
