@@ -15,6 +15,5 @@ export interface CreateGameRequestDto {
     playerBlueName?: string;
     playerRedName?: string;
     pitCount?: number;
-    againstComputer?: boolean;
 }
 

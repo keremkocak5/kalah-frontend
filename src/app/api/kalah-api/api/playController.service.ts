@@ -92,18 +92,19 @@ export class PlayControllerService {
     }
 
     /**
-     * Make a movement.
-     * @param gameId 
+     * Makes a movement.
+     * Accepts game id, and pit number to be sowed as arguments.
+     * @param game 
      * @param pit 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public makeMove(gameId: number, pit: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<BoardHeaderResponseDto>;
-    public makeMove(gameId: number, pit: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<BoardHeaderResponseDto>>;
-    public makeMove(gameId: number, pit: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<BoardHeaderResponseDto>>;
-    public makeMove(gameId: number, pit: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (gameId === null || gameId === undefined) {
-            throw new Error('Required parameter gameId was null or undefined when calling makeMove.');
+    public makeMove(game: number, pit: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<BoardHeaderResponseDto>;
+    public makeMove(game: number, pit: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<BoardHeaderResponseDto>>;
+    public makeMove(game: number, pit: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<BoardHeaderResponseDto>>;
+    public makeMove(game: number, pit: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (game === null || game === undefined) {
+            throw new Error('Required parameter game was null or undefined when calling makeMove.');
         }
         if (pit === null || pit === undefined) {
             throw new Error('Required parameter pit was null or undefined when calling makeMove.');
@@ -145,7 +146,7 @@ export class PlayControllerService {
             }
         }
 
-        let localVarPath = `/play/game/${this.configuration.encodeParam({name: "gameId", value: gameId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/pit/${this.configuration.encodeParam({name: "pit", value: pit, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
+        let localVarPath = `/v2/play/game/${this.configuration.encodeParam({name: "game", value: game, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/pit/${this.configuration.encodeParam({name: "pit", value: pit, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
         return this.httpClient.request<BoardHeaderResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
