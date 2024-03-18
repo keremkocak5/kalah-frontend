@@ -1,21 +1,18 @@
 <div fxLayout="column" fxLayoutAlign="space-around stretch">
 
-  <p>board-page works! {{gameResponseDto.playerBlueName}}
-  </p>
+    <p>board-page works! {{gameResponseDto.playerBlueName}}
+    </p>
 
 </div>
 <div style="padding: 1em;">
-  <mat-grid-list cols={{2+(!gameResponseDto.pitCount?0:gameResponseDto.pitCount)}} rowHeight="100px">
-    @for (tile of t1; track tile) {
-    <mat-grid-tile
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-      <button [disabled]="isButtonDisabled(tile)" fxLayout="column" fxLayoutAlign="space-around stretch"
-              (click)="move(tile.id!)" class="new-game-button" type="submit" mat-raised-button color="primary">
-        {{tile.tileCount}}
-      </button>
-    </mat-grid-tile>
+    <mat-grid-list cols={{2+(!gameResponseDto.pitCount?0:gameResponseDto.pitCount)}} rowHeight="100px">
+        @for (tile of t1; track tile) {
+        <mat-grid-tile [rowspan]="tile.rows" [style.background]="tile.color">
+            <button [disabled]="isButtonDisabled(tile)" fxLayout="column" fxLayoutAlign="space-around stretch"
+                (click)="move(tile.id!)" class="new-game-button" type="submit" mat-raised-button
+                color="primary">{{tile.tileCount}}</button>
+        </mat-grid-tile>
 
-    }
-  </mat-grid-list>
+        }
+    </mat-grid-list>
 </div>

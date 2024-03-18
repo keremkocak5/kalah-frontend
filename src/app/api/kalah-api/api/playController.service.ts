@@ -93,7 +93,7 @@ export class PlayControllerService {
 
     /**
      * Makes a movement.
-     * Accepts game id, and pit number to be sowed as arguments.
+     * Accepts two arguments: Game Id, and the Pit Number to be sowed.
      * @param game 
      * @param pit 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -146,7 +146,7 @@ export class PlayControllerService {
             }
         }
 
-        let localVarPath = `/v2/play/game/${this.configuration.encodeParam({name: "game", value: game, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/pit/${this.configuration.encodeParam({name: "pit", value: pit, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
+        let localVarPath = `/v1/play/game/${this.configuration.encodeParam({name: "game", value: game, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/pit/${this.configuration.encodeParam({name: "pit", value: pit, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int32"})}`;
         return this.httpClient.request<BoardHeaderResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,

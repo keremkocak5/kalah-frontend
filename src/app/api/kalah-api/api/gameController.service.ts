@@ -152,7 +152,7 @@ export class GameControllerService {
             }
         }
 
-        let localVarPath = `/v2/game`;
+        let localVarPath = `/v1/game`;
         return this.httpClient.request<GameResponseDto>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -168,7 +168,8 @@ export class GameControllerService {
     }
 
     /**
-     * Returns an existing game.
+     * Returns an existing Kalah game.
+     * Accepts one argument, Game Id.
      * @param game 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -217,7 +218,7 @@ export class GameControllerService {
             }
         }
 
-        let localVarPath = `/v2/game/game/${this.configuration.encodeParam({name: "game", value: game, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        let localVarPath = `/v1/game/game/${this.configuration.encodeParam({name: "game", value: game, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
         return this.httpClient.request<GameResponseDto>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,

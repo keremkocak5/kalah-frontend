@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CreateGameRequestDto, GameControllerService } from '../api/kalah-api';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { take } from 'rxjs';
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [FlexLayoutModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule,CommonModule],
+  imports: [FlexLayoutModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, CommonModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -25,27 +26,27 @@ export class LandingPageComponent {
     lastName: new FormControl(''),
   });
 
-onSubmit() {
-throw new Error('Method not implemented.');
-}
-form: FormGroup;
+  onSubmit() {
+    throw new Error('Method not implemented.');
+  }
+  form: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder,
     private router: Router,
     private gameControllerService: GameControllerService
   ) {
-   
+
 
     this.form = formBuilder.group({
-			playerRedName: ['', Validators.required],
+      playerRedName: ['', Validators.required],
       playerBlueName: ['', Validators.required],
       pitCount: ['', Validators.required]
-		});
+    });
 
   }
 
-  createGameRequestDto: CreateGameRequestDto = {playerBlueName: '', playerRedName: '', pitCount: 3, againstComputer: false};
+  createGameRequestDto: CreateGameRequestDto = { playerBlueName: '', playerRedName: '', pitCount: 3 };
 
 
   checkoutForm = this.formBuilder.group({
@@ -54,8 +55,10 @@ form: FormGroup;
   });
 
   public createNewGame() {
-    this.gameControllerService.createGame(this.createGameRequestDto).subscribe(data1 => {this.router.navigateByUrl('/gameplay',{ state: {game: data1}})
-      });
+    this.gameControllerService.createGame(this.createGameRequestDto).pipe(take(1)).subscribe(data1 => {
+      this.router.navigateByUrl('/gameplay', { state: { game: data1 } }), console.error("kerem");
+      
+    });
   }
 
 }

@@ -15,12 +15,25 @@ import { BoardResponseDto } from './boardResponseDto';
 export interface BoardHeaderResponseDto { 
     boardResponseDtos?: Array<BoardResponseDto>;
     turn?: BoardHeaderResponseDto.TurnEnum;
+    gameStatus?: BoardHeaderResponseDto.GameStatusEnum;
+    winner?: BoardHeaderResponseDto.WinnerEnum;
 }
 export namespace BoardHeaderResponseDto {
     export type TurnEnum = 'BLUE' | 'RED';
     export const TurnEnum = {
         Blue: 'BLUE' as TurnEnum,
         Red: 'RED' as TurnEnum
+    };
+    export type GameStatusEnum = 'ACTIVE' | 'GAME_OVER_DRAW' | 'GAME_OVER';
+    export const GameStatusEnum = {
+        Active: 'ACTIVE' as GameStatusEnum,
+        GameOverDraw: 'GAME_OVER_DRAW' as GameStatusEnum,
+        GameOver: 'GAME_OVER' as GameStatusEnum
+    };
+    export type WinnerEnum = 'BLUE' | 'RED';
+    export const WinnerEnum = {
+        Blue: 'BLUE' as WinnerEnum,
+        Red: 'RED' as WinnerEnum
     };
 }
 
