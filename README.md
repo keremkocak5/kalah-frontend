@@ -1,3 +1,11 @@
+
+docker build -t kalah-ng .
+
+docker run -p 4200:4200 kalah-ng
+
+
+
+
 # MyApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
