@@ -10,55 +10,19 @@ import { CommonModule } from '@angular/common';
 import { CreateGameRequestDto, GameControllerService } from '../api/kalah-api';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { take } from 'rxjs';
+import { NewGamePageComponent } from "../new-game-page/new-game-page.component";
+import { ResumeGamePageComponent } from "../resume-game-page/resume-game-page.component";
+import { ListGamesPageComponent } from "../list-games-page/list-games-page.component";
+import {MatToolbarModule} from '@angular/material/toolbar';
+  
 @Component({
-  selector: 'app-landing-page',
-  standalone: true,
-  imports: [FlexLayoutModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, CommonModule],
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+    selector: 'app-landing-page',
+    standalone: true,
+    templateUrl: './landing-page.component.html',
+    styleUrl: './landing-page.component.scss',
+    imports: [MatToolbarModule, MatButtonModule, MatInputModule, FlexLayoutModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, CommonModule, NewGamePageComponent, ResumeGamePageComponent, ListGamesPageComponent]
 })
 export class LandingPageComponent {
 
-  // kerem number of pits 10 olabilir
-
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-  });
-
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
-  form: FormGroup;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private gameControllerService: GameControllerService
-  ) {
-
-
-    this.form = formBuilder.group({
-      playerRedName: ['', Validators.required],
-      playerBlueName: ['', Validators.required],
-      pitCount: ['', Validators.required]
-    });
-
-  }
-
-  createGameRequestDto: CreateGameRequestDto = { playerBlueName: '', playerRedName: '', pitCount: 3 };
-
-
-  checkoutForm = this.formBuilder.group({
-    name: '',
-    address: ''
-  });
-
-  public createNewGame() {
-    this.gameControllerService.createGame(this.createGameRequestDto).pipe(take(1)).subscribe(data1 => {
-      this.router.navigateByUrl('/gameplay', { state: { game: data1 } }), console.error("kerem");
-      
-    });
-  }
 
 }

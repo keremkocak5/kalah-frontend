@@ -10,13 +10,16 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [CommonModule, MatGridListModule, RouterOutlet, LandingPageComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, FlexLayoutModule, ReactiveFormsModule, HttpClientModule]
+    imports: [MatSnackBarModule, MatCardModule, CommonModule, MatToolbarModule, MatGridListModule, RouterOutlet, LandingPageComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule, FlexLayoutModule, ReactiveFormsModule, HttpClientModule]
 })
 export class AppComponent {
   title = 'Kalah';

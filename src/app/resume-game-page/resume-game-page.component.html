@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Resume an Existing Game</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions align="end">
+        <div fxLayout="row" fxLayoutAlign="space-evenly stretch">
+            <form [formGroup]="form" (ngSubmit)="resumeGame()">
+                <div class="input-format">
+                    <label class="input-format">Game Id</label>
+                    <input matInput [(ngModel)]="kerem" name="pitCount" #pitCount
+                        formControlName="pitCount" type="number" class="form-control">
+                </div>
+                <button class="new-game-button" [disabled]="!form.valid" type="submit" mat-raised-button
+                    color="primary">Submit
+                </button>
+            </form>
+        </div>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Create a New Game</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions align="end">
+        <div fxLayout="row" fxLayoutAlign="space-evenly stretch">
+            <form [formGroup]="form" (ngSubmit)="createNewGame()">
+                <div class="input-format">
+                    <label class="input-format">Red Player Name</label>
+                    <input matInput [(ngModel)]="createGameRequestDto.playerBlueName" name="playerBlueName" #name maxlength="50" minlength="1"
+                        formControlName="playerBlueName" type="text" class="form-control">
+                </div>
+                <div class="input-format">
+                    <label class="input-format">Blue Player Name</label>
+                    <input matInput [(ngModel)]="createGameRequestDto.playerRedName" name="playerRedName" #name maxlength="50" minlength="1"
+                        formControlName="playerRedName" type="text" class="form-control">
+                </div>
+                <div class="input-format">
+                    <label class="input-format">Number of Pits</label>
+                    <input matInput [(ngModel)]="createGameRequestDto.pitCount" name="pitCount" #pitCount max="10" min="1" style="width: 46% ;"
+                        formControlName="pitCount" type="number" class="form-control">
+                </div>
+                <button class="new-game-button" [disabled]="!form.valid" type="submit" mat-raised-button
+                    color="primary">Submit
+                </button>
+            </form>
+        </div>
+    </mat-card-actions>
+</mat-card>
