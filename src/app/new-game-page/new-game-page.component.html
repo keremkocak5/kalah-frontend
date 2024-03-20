@@ -9,13 +9,13 @@
                     <label class="input-format">Red Player Name</label>
                     <input matInput [(ngModel)]="createGameRequestDto!.playerBlueName" name="playerBlueName"
                         maxlength="50" minlength="1" ngModel pattern="[0-9a-zA-Z ]*" formControlName="playerBlueName"
-                        type="text" class="form-control">
+                        type="text" class="form-control"style="color: red;" >
                 </div>
                 <div class="input-format">
                     <label class="input-format">Blue Player Name</label>
                     <input matInput [(ngModel)]="createGameRequestDto!.playerRedName" name="playerRedName"
-                        maxlength="50" minlength="1" ngModel pattern="[0-9a-zA-Z ]*" formControlName="playerRedName"
-                        type="text" class="form-control">
+                        maxlength="50" minlength="1" ngModel pattern="[0-9a-zA-Z ]*" formControlName="playerRedName" 
+                        type="text" class="form-control" style="color: blue;">
                 </div>
                 <div class="input-format">
                     <label>Number of Pits</label>
