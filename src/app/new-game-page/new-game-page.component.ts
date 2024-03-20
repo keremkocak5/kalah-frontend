@@ -26,7 +26,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class NewGamePageComponent implements OnInit {
 
   public form?: FormGroup;
-  public createGameRequestDto: CreateGameRequestDto = { playerBlueName: '', playerRedName: '', pitCount: 6 };
+  public createGameRequestDto?: CreateGameRequestDto;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -36,6 +36,7 @@ export class NewGamePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createGameRequestDto = { playerBlueName: '', playerRedName: '', pitCount: 6 }
     this.form = this.formBuilder.group({
       playerRedName: ['', Validators.required],
       playerBlueName: ['', Validators.required],
@@ -44,7 +45,7 @@ export class NewGamePageComponent implements OnInit {
   }
 
   public createNewGame() {
-    this.gameControllerService.createGame(this.createGameRequestDto).pipe(
+    this.gameControllerService.createGame(this.createGameRequestDto!).pipe(
       catchError((err: HttpErrorResponse) => {
         this.snackBar.open(err.error.detail, 'Ok', {
           duration: 3000
