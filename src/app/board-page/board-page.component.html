@@ -1,18 +1,24 @@
-<div fxLayout="column" fxLayoutAlign="space-around stretch">
-
-    <p>board-page works! {{gameResponseDto.playerBlueName}}
-    </p>
-
+<div fxLayout="row" fxLayoutAlign="space-around center" style="padding-top: 30px; padding-bottom: 30px;">
+    <div [fxFlex]="40">
+        <app-player-card-page style="color: blue;" [playerName]="gameResponseDto.playerBlueName!"
+            [playersTurn]="isPlayersTurn('BLUE')"></app-player-card-page>
+    </div>
+    <div [fxFlex]="40">
+        <app-player-card-page style="color: red;" [playerName]="gameResponseDto.playerRedName!"
+            [playersTurn]="isPlayersTurn('RED')"></app-player-card-page>
+    </div>
 </div>
+
 <div style="padding: 1em;">
     <mat-grid-list cols={{2+(!gameResponseDto.pitCount?0:gameResponseDto.pitCount)}} rowHeight="200px">
         @for (tile of t1; track tile) {
         <mat-grid-tile [rowspan]="tile.rows" [style.background]="tile.color">
-            <button [disabled]="isButtonDisabled(tile)" fxLayout="column" fxLayoutAlign="space-around stretch"
+            <button [disabled]="isMoveButtonDisabled(tile)" fxLayout="column" fxLayoutAlign="space-around stretch"
                 (click)="move(tile.id!)" class="new-game-button" type="submit" mat-raised-button
                 color="primary">{{tile.tileCount}}</button>
         </mat-grid-tile>
-
         }
     </mat-grid-list>
 </div>
+
+<app-game-over-page [gameResponseDto]="gameResponseDto"></app-game-over-page>

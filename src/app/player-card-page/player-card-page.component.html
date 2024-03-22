@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-header style="padding-bottom: 1em;">
+        <mat-icon *ngIf="!playersTurn"
+            style="transform: scale(0.8); vertical-align: middle; padding-right: 0.5em; padding-top: 0.2em;">lock</mat-icon>
+            <mat-icon *ngIf="playersTurn"
+            style="transform: scale(0.8); vertical-align: middle; padding-right: 0.5em; padding-top: 0.2em;">lock_open</mat-icon>
+            <mat-card-title >{{playerName}}</mat-card-title>
+    </mat-card-header>
+</mat-card>

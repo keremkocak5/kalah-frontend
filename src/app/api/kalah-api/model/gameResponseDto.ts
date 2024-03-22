@@ -19,6 +19,7 @@ export interface GameResponseDto {
     playerBlueName?: string;
     turn?: GameResponseDto.TurnEnum;
     status?: GameResponseDto.StatusEnum;
+    winner?: GameResponseDto.TurnEnum;
     boardResponseDtos?: Array<BoardResponseDto>;
 }
 export namespace GameResponseDto {

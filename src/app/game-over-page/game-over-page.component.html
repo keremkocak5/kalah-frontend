@@ -1,0 +1,10 @@
+<div *ngIf="isGameOver()" style="padding-left: 10em; padding-right: 10em;">
+    <mat-card>
+        <div style="text-align: center; ">
+            GAME OVER
+        </div>
+        <div style="text-align: center; ">
+            Winner: {{gameResponseDto! | winnerConverter}}
+        </div>
+    </mat-card>
+</div>
