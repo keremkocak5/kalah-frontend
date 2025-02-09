@@ -26,6 +26,9 @@ pembe renk gelsin
 winner case (get game icin de)
 animasyon
 renkleri csse ver
+// guvenlik
+// testcontainers ve mysql docker ile 
+
 */
 
 
